@@ -110,3 +110,29 @@ Auth::routes();
 Auth::routes(['verify'=>'true']);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+
+// we will make route for facebook
+Route::get('/redirect/{service}', 'SocialController@redirect');
+
+// we will make route for facebook callback
+Route::get('/callback/{service}', 'SocialController@callback');
+
+//route for get offers fillable example
+Route::get('fillable', 'CrudController@getOffers');
+
+//group of routes
+Route::group(
+        [
+         'prefix' => LaravelLocalization::setLocale(),
+          'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+        ], function(){ 
+    Route::group(['prefix'=>'offers'], function(){
+        //Route::get('store', 'CrudController@store');
+        Route::get('create', 'CrudController@create');
+        Route::post('store', 'CrudController@store')->name('offers.store');
+
+        Route::get('all', 'CrudController@getAllOffers');
+
+    });
+ });
+

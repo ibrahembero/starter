@@ -40,8 +40,17 @@ class LoginController extends Controller
     }
      ////i override function username from AuthenticatesUsers.php
      ////  in LoginController.php
+    //  public function username()
+    //  {
+    //      return 'email';
+    //  }
+     ////i override function username from AuthenticatesUsers.php
+     ////  in LoginController.php
      public function username()
      {
-         return 'email';
+         $val = request()->input('identify'); //ibrahem@gmail.com or 09000
+         $key= filter_var($val,FILTER_VALIDATE_EMAIL)?'email' :'mobile';
+         request()->merge([$key=>$val]);
+         return $key;
      }
 }

@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     // i add mobile in white list in app/User.php
     protected $fillable = [
-        'name', 'email', 'password','mobile',
+        'name', 'email', 'password','mobile','expire',
     ];
 
     /**

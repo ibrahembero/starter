@@ -12,6 +12,19 @@
                         @csrf
 
                         <div class="form-group row">
+                            <label for="identify" class="col-md-4 col-form-label text-md-right">email or mobile</label>
+
+                            <div class="col-md-6">
+                                <input id="identify" type="text" class="form-control @error('identify') is-invalid @enderror" name="identify" value="{{ old('identify') }}" required  autofocus>
+
+                                @error('identify')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                        {{-- <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
@@ -22,7 +35,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
+                            </div> --}}
                             {{-- i will change some code here in login.blade.php --}}
                             {{-- <label for="mobile" class="col-md-4 col-form-label text-md-right">Mobile</label>
 
